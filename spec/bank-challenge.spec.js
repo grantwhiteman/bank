@@ -1,4 +1,4 @@
-const Account = require('../src/Account.js')
+const Account = require('../src/account.js')
 const Transaction = require('../src/transaction.js')
 
 describe('Bank-challenge', function() {

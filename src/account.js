@@ -1,12 +1,12 @@
 const getDate = require('./getDate.js')
-const Statement = require('./Statement.js')
+const Statement = require('./statement.js')
 const Transactions = require('./transaction.js')
 
 module.exports = class Account {
     constructor() {
         this._balance = 0
         this._transactions = []
-        this.statement = new Statement
+        this._statement = new Statement
     }
 
     deposit(transaction, amount, date = getDate()) {
@@ -20,6 +20,6 @@ module.exports = class Account {
     }
 
     printStatement() {
-        return this.statement.print(this._transactions)
+        return this._statement.print(this._transactions)
     }
 }
