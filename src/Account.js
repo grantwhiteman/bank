@@ -1,5 +1,5 @@
 const getDate = require('../src/getDate.js')
-class Account {
+module.exports = class Account {
     constructor() {
         this._transactions = []
     }
@@ -7,5 +7,8 @@ class Account {
     deposit(amount, date = getDate()) {
         this._transactions.push(['deposit', amount, date])
     }
+
+    withdraw(amount, date = getDate()) {
+        this._transactions.push(['withdrawal', amount, date])
+    }
 }
-module.exports = Account
