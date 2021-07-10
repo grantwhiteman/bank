@@ -39,3 +39,22 @@ date || credit || debit || balance
 
 #### Extended
 - [ ] See a coach!
+
+
+
+|Object|Properties|Messages|Context|Output|
+|---|---|---|---|---|
+|Transaction data|type @ string||||
+||amount @ number||||
+||date @string||||
+|Transactions|type @string|Deposit(amount @number, date @string)|Deposit account with amount and date ,stored in transaction Obj|Transaction data @obj|
+||amount @number|withdraw(amount @number, date @string)|withdraw account with amount and date ,stored in transaction Obj|Transaction data @obj|
+||date @string||||
+|Statement|type @string|print()|Prints formatted transaction data|Statement @string|
+||amount @number|format()|Formats transaction data|Transaction data @string|
+||date @string||||
+||Transaction data @Obj||||
+
+
+
+let today = new Date().toISOString().slice(0,10)
