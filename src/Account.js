@@ -1,4 +1,6 @@
-const getDate = require('../src/getDate.js')
+const getDate = require('./getDate.js')
+const Transactions = require('./transaction.js')
+
 module.exports = class Account {
     constructor(balance = 0) {
         this._balance = balance
@@ -6,20 +8,23 @@ module.exports = class Account {
         this._statement = 'date || credit || debit || balance'
     }
 
-    deposit(amount, date = getDate()) {
+    deposit(transaction, amount, date = getDate()) {
         this._balance += amount
-        this._transactions.unshift([date, amount.toFixed(2), null, this._balance.toFixed(2)])
+        let arr = transaction.deposit(amount, date)
+        arr.push(this._balance.toFixed(2))
+        this._transactions.unshift(arr)
     }
 
-    withdraw(amount, date = getDate()) {
+    withdraw(transaction, amount, date = getDate()) {
         this._balance -= amount
-        this._transactions.unshift([date, null, amount.toFixed(2), this._balance.toFixed(2)])
+        let arr = transaction.withdraw(amount, date)
+        arr.push(this._balance.toFixed(2))
+        this._transactions.unshift(arr)
     }
 
     printStatement() {
-        console.log(this._transactions)
         for (let i = 0; i < this._transactions.length; i++) {
-            this._statement += `\n${this._transactions[i].join(' || ').replace('  ', ' ')}`
+            this._statement += `\n${this._transactions[i].join(' || ').replace('  ', ' ')}` // had to replace double space with single as null had 2 spaces
         }
         return this._statement
     }
