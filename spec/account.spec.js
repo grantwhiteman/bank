@@ -20,4 +20,10 @@ describe('account', function() {
         account.withdraw(500, '10-04-2015')
         expect(account._transactions[0]).toEqual(expectedOutput)
     })
+    it('withdraw adds withdrawal to account, without date input', function() {
+        let account = new Account
+        let expectedOutput = ['deposit', 500, getDate()]
+        account.deposit(500)
+        expect(account._transactions[0]).toEqual(expectedOutput)
+    })
 })
