@@ -1,6 +1,5 @@
-const getDate = require('./getDate.js')
+const formatDate = require('./getDate.js')
 const Statement = require('./statement.js')
-const Transactions = require('./transaction.js')
 
 module.exports = class Account {
     constructor() {
@@ -9,12 +8,12 @@ module.exports = class Account {
         this._statement = new Statement
     }
 
-    deposit(transaction, amount, date = getDate()) {
+    deposit(transaction, amount, date = formatDate()) {
         this._balance += amount
         this._transactions.unshift(transaction.deposit(amount, date, this._balance))
     }
 
-    withdraw(transaction, amount, date = getDate()) {
+    withdraw(transaction, amount, date = formatDate()) {
         this._balance -= amount
         this._transactions.unshift(transaction.withdraw(amount, date, this._balance))
     }
